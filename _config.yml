@@ -1,0 +1,13 @@
+permalink: /blog/:year/:month/:day/:title
+markdown: kramdown
+highlighter: rouge
+kramdown:
+    input: GFM
+    hard_wrap: false
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+name:         C++ development
+description:  Low latency programming with C/C++
+url:          https://bignacio.github.io
+timezone: EDT
