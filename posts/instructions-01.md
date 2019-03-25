@@ -2,15 +2,14 @@
 
 It's amazing what microprocessors can do in such small scale, always trying to get the most from every clock cycle.
 
+CISC architectures even more so; most modern processors internally convert the often hard to deal with CISC instructions into RISC, in order to more efficiently perform instruction optimization.
 
-CISC architectures even more so; most modern processors internally convert the often hard to deal with CISC instructions into RISC, in order to more efficiently peform instruction optimization.
-
-One very interesting characteristic of CISC is that instructions have variable lenghts. It's something we don't often think about but instructions also require bytes to exist somewhere!
+One very interesting characteristic of CISC is that instructions have variable lengths. It's something we don't often think about but instructions also require bytes to exist somewhere!
 
 In the Intel CISC world, different instructions can take different clock cycles to execute.
 
-During the rest of this post, I'll be refering to Intel processors, unless otherwise indicated.
-We'll see how C++ compilers can sometimes optmize the code in ways that are not always beneficial
+During the rest of this post, I'll be referring to Intel processors, unless otherwise indicated.
+We'll see how C++ compilers can sometimes optimize the code in ways that are not always beneficial
 
 ## Microprocessors architecture 
 
@@ -19,7 +18,7 @@ Before we get too deep into examples, let's quickly review a few characteristics
 Note we'll barely scratch the surface of this subject. There is just too much to consider and understand the internals of microprocessors.
 Not to mention the fact that vendors keep the details very, very secret.
 
-I put some links in the references section of this article, that hopefuly will help with some things.
+I put some links in the references section of this article, that hopefully will help with some things.
 
 Most, if not all, Intel microprocessors are pipelined, which means instructions can be *processed* in a stages, reducing the number of cycles required for executing each instruction.
 
@@ -39,8 +38,8 @@ Here's where things get interesting
 
 ### The instruction cache and fused instructions
 
-As I mentioned eariler in this post, different instructions are encoded in different sizes and require different clock cycles to execute. 
-Now, there's no directy relationship between the number of bytes an instruction uses and the number of clock cycles required to execute it.
+As I mentioned earlier in this post, different instructions are encoded in different sizes and require different clock cycles to execute. 
+Now, there's no directly relationship between the number of bytes an instruction uses and the number of clock cycles required to execute it.
 
 However, the instructions in the pipeline waiting to be processed (see image above) are kept in the **instruction cache**. 
 This cache varies in size and it is usually one per physical processor core (and usually shared by hyperthreaded cores) and have very low access latency, when compared to other cache levels or the main memory.
@@ -53,7 +52,7 @@ Keeping the instruction count small also reduces the chance of them being evicte
 
 The instructions are also not the thing the processor will, well *process* in the end. Instructions are converted into micro operations that the hardware uses during the execution of the instruction.
 
-In addition, recent architectures - starting with Intel's Sandy Bridge - can combine and cache micro operations using a techinique called fusion. 
+In addition, recent architectures - starting with Intel's Sandy Bridge - can combine and cache micro operations using a technique called fusion. 
 
 There are (at least) 3 types of fusion in the Sandy Bridge and newer architectures:
 
@@ -65,7 +64,7 @@ Again, this subject is too deep and complex to cover here. The point I'm trying 
 
 This can save the processor significant time; during the decode phase of the pipeline, if a set of instructions is present in the micro operations cache, they don't need to be decode or go through the rest of the pipeline steps before execution.
 
-There are fantastic and very complicated components in the processor to manage the intruction and micro operation cache. Maybe another day...
+There are fantastic and very complicated components in the processor to manage the instruction and micro operation cache. Maybe another day...
 
 ### Compilers for the rescue
 
@@ -79,7 +78,7 @@ Such is the case for SIMD  (Single Instruction Multiple Data) instructions. Thes
 You know how good GPUs are at processing vectors and matrices? 
 Well, CPUs also have similar capabilities, albeit in a significantly smaller and slower scale. 
 
-Most CPUs also have more than one unit capable of executing SIMD instructions and depending on the isntruction, they can be executed in parallel.
+Most CPUs also have more than one unit capable of executing SIMD instructions and depending on the instruction, they can be executed in parallel.
 
 So the compiler sees that our carefully written C++ code is performing operations on a vector, for example, and concludes the best way go about it is using SIMD instruction. A process known as autovectorization.
 
@@ -173,7 +172,7 @@ for `BM_pointerIncrement`, the code is more straightforward
 0x100001364 <+244>: mov    ecx, dword ptr [rdx]
 0x100001366 <+246>: add    rdx, 0x4
 0x10000136a <+250>: cmp    ecx, 0x1
-0x10000136d <+253>: jne    0x100001360 ; not equals to 1, go back to the begining of the loop
+0x10000136d <+253>: jne    0x100001360 ; not equals to 1, go back to the beginning of the loop
 ```
 
 One note about the implementation of `BM_pointerIncrement`; it uses an optimization technique called [Sentinel Value](https://en.wikipedia.org/wiki/Sentinel_value) where the idea is to change the termination condition for a loop. 
@@ -200,16 +199,16 @@ The results must seem a bit surprising, at first, given there's a lot more instr
 
 First let me say that this results will certainly vary from CPU to CPU and I wouldn't be surprised if results were very similar on another CPU.
 
-Aside from the fact the implementation of `BM_pointerIncrement` had produced fewer instructions, the SIMD instructions can process more data per clock cycle and are probably being executed in concurrently by the processor ports - there should be 3 vector ALU for integers in my case.
+Aside from the fact the implementation of `BM_pointerIncrement` had produced fewer instructions, the SIMD instructions can process more data per clock cycle and are probably being executed in concurrently by the processor ports - there should be 3 vector ALU for integers in this case.
 
-Although there is more data being moved from cache to the xmm registers, and there's precious time being spent on that, the vector `values` is small and can fit nicelly in the data cache.
+Although there is more data being moved from cache to the xmm registers, and there's precious time being spent on that, the vector `values` is small and can fit nicely in the data cache.
 Also, the length of `values` perfectly aligns with the size of each xmm register (16 bytes, in this case), avoiding reaching across cache lines.
 
 One less note, different compilers will produce different results. To try that, I strongly suggest checking out the code in [compiler explorer](https://gcc.godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAKxAEZSAbAQwDtRkBSAJgCFufSAZ1QBXYskwgA5NwDMeFsgYisAag6yAwoILoGeAEYA6BBuwcADAEFLVgpgC2AB2b31WpU0GDVAFSdmtgr6LJiqAG6oeOiq6KgAcqgEAPJOBHgOeABemBD%2B3ABsEUzKmACU6gDsfNZyeABmsZj1CpjoEAD6HZ5sXWW2qqpeDhGorngMudxc06og6lwzvGQO0xDhJSLlczvTDo4kAJ7T/bI1NlyymAyCmANDgiOR45MQ07Pz77wOpMRrG6UKvNPot9g4jicNOc5JgWPh6rYOJUACKI6yRaKqYisOIOABiEwYEAUBAAVLEmAQmKRVCTVJM2AQEDS6YIANZ4Jz9ar3Qb1EjElgEWnuZGqCzuHgijSaemw4BMyW0/j8bnnQYajXoSlMDgAVh4eH1Yo0YuxcNQDggp3Vmo1DQg2qp%2BsNxtFptU7M5at5ds1Tt1BqNepNsjFFihvs1SNR1mjKMRCdq6KiMSYxGxhwAknDMAAPa1I22DNAsHS0oVyxkIUWqLgWAAsAA5I3GNb6SeSAVsfB7QgB3CsEF0MhWmENQ6Ntwbm3EEhhE7uYQQ00dMmkWG2%2BkRlvDAUIxOl52sRs5TmzT1T84iC4V4E9K%2B8yqtjx8q3g%2By%2Ba48qsPFUqCC6waomcvoxn6EHtpecSJCkaQZNkuR5lu0HXJg9gum6S6AaBtRJheVgYjEThREKmDEDmyDEI4sIEIWPKXqW5Z0muNYevWzb8LQrZWJqTF3pWtxCq0DC1txuG8VBkmDJ2/49rWA5DiO8pMsak5SZqs6WvOi6bMuq4qcynq0SJKHSeol4APSWcZwpMmEzDliRgiEHgqAsA8qj2cZwmhAwvrYcp1YALTcSGtZCekfk8R2Qrkk4taBRJmo7i5%2B5tEOqg/n%2Bp7FhZ5n9ggEy5KSCVgGAHqRaZRZRhqP68B6pU8ZBAQNQ1yXtiikGQbVgy%2BjBSSpOkmQ5BAyHNVqaEYQaWF6Th0IolIZSMNIepSKQLDSBY62oNImjvlKwhiBICyyLQ60EFtS3LWyIB6hYK1SA262bVI22kLtUjrYIIAPZdb1LaQcCwEgaDOMVZAUBAYNOBDIDAE2sikC0DD2MQP0QAYV2kAYCjpoc0jnaQYP7EKyQsAwBMA6QWAOKwwCTNj%2BDUcg6ThMu2P5pgyAiPYhPrSS1zY/oBjYsQhyaBgkhSETBDEBk/PLcwbAoAdjCGD9kDLag8HuT9UjBcksjfaI4iSLQSurS92OfXmTYFMFBQNqowDIMgqhNkYsiqBAuCECQp30Kokvg5MxCBxU%2B1tTwF1XWUN13Q9DDSM9G029I32/aQ/3bfHj1cNb1OfbHAN5%2Bz6NuZtDZAA%3D).
 
 Compiler explorer is an absolutely fantastic tool and I cannot recomend it enough.
 
-As a final thought, consider the use of autovectorization carefully. It can be of great benefit but you'll want to have some control over what is happening so it does not end up hindering the performace of your application.
+As a final thought, consider the use of autovectorization carefully. It can be of great benefit but you'll want to have some control over what is happening so it does not end up hindering the performance of your application.
 
 The full example code used in this article is [found here](../code/instructions-01_ce.cpp)
 

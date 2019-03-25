@@ -1,1 +1,34 @@
-https://gcc.godbolt.org/#z:OYLghAFBqd5TKALEBjA9gEwKYFFMCWALugE4A0BIEAViAIzkA2AhgHaioCkATAEK8%2B5AM7oArqVTYQAcl4BmAm1RMxOLvIDCqYUUxMCAIw24uABgCC5i0WwBbAA6tbAag3bWw4S4AqDk9ZKBmzYLgBu6ASYLgAi6ABy6EQA8g5EBHYEAF7YEH68AGzhLKrYAJRuAOwClgoEAGYuOPVK2JgQAPodKuzAXWXWLi4swnbh6M4ETLm8PLMuIG48c/wUdrMQYSVi5Qt7s3b2ZACeswPyNVY88thMwtiDw6Pjk9MQs/OLH/x25KQbW1KFUWX2WhzsJzOGkuCmwbEI9WsXEqMSRlgiURcqBKqDEzlyA2qjyGGDYuhcSiILl0LFIVI0MRcpHYmHQdgg50uQxJ6DJVMpLmmHCISDc8kZPDMABYABzQ4lY3nkgX3NjpEJMMWMszy2qWbkUtXFUrCLgAVj4QuAIvNqIuCoVgJ2potVpFAFp6LatdS4erbrqLAaDQqDfUyBABQQfWYxXwKWLNC56GZU9CCIJBISucGhgKSEQSj6aXTA7m80aQgAPenilw6%2B368uUgBULgcPqd2FNjaD5YA7kgprkWx2wGAGb61a0mNnQ%2BWC0XM3XR2XywbF5rl4yWxB/Px6Jz57nq/T%2BJPd/u%2BDwj0310NT0sBCu94J5Le%2B/f29updCv0NjyqVE72DTcnwZU811zOJEhSNIMmyXJNw/EMUQdWoURkMpmFkM0ZHINhZDMfD0FkTRM34alxEkUIFHofCiCIrDsIAaxAeR5AAOg4njeL4gocJkKV8LsEAzTMAimPIUiZHw4QQAkxiZGI7C4FgFAMBwfBiDIShqDoHhmF6NAKKEUQJCkWQ6mUVR1C0HQ9AMYx5FMPUbHsJwWFcdwei8Xx/BcwI2GCUIMWiGCklSdJMhyPJ9yKLsKmRGFrgaJpsBaEJ2i6HoOH6R4RjGCJXhmZZPiWFY%2BDWAFtl2EEKvBSFlg/WE7geJtCpeLzh3eMrln2Pq%2BF%2Bf5lk2WrgQGnhGtIU5msDWF4QaJE0PRSJomEJRgGmABlWwHA5ZL0M/RU%2BUNKkS1rRlmXhNkDt7A1SWVI03VFSdJVlKCTqe86/RnGN5pAgUuxdS04WtJBbU%2Bx1apBl7PW9SdVX9JhPvDUhIyNaNJ1jP8sa0ZNUwbPgM3Pfg5xAwD8ySJc6wuz6DVbdtOxhv9y0AwcetHFxx0R36NXJ471zA7cXFXe7/yvZd4zZkDUMZGXBe5CK4OixCIGQ1mAIplarB1rDBLwyTlJIsjTKoizaOuHgGKYspsKQbAWBwUhqGwphZGE8hRPEo3iOk2Q5IU8glJU1j2K4vjI54gT3ZkeR8MI43/dk4PbfINSEHgCANLZBxhwoKgIAwRx87QVg8qIUgxDYFjyBaJhbFIeSIEMKTDCUWljlkejyGLw41WSYKu6TnA7F6aYpMIUhsFQdIwm7KTsCrGexFsbv8MpW4pKc5kZs0LBpBkHvK4yde3eM7hSaEJz5MgbD0HgpVZHdZJ5Bcd07FQBwxAZQxSHQJ2/ZbhMDktRSyh4DYJykjJKsMoCjugKFKLE5dgAuHVlXGuFQIDaRIKQJY8hGAuH3iXaYeC6IVHIlfG2xs7bkDYhxbiUdI4xw9iJMSElE5%2BxkoHRSacM7ZzQLnfOeki5CNIWXXoHRK7V1rvXRuzdW5J3bmwTu69e5sn7ikIek97Dj0Pn7KeM854LyTkvFea8j4bzVFvJOO9O77xwGok%2BolLHnw4CZK%2BzAjC3w5NJR%2BZJn6v3fp/b%2Bv9/6AOAaAi2IAbyQN9ibGQsD4GIOQb0NB0jMFoJwWQfBhkiFiOwGQq2FDTLUNDuQB2TtCmu0Ep7b2HDoEBxEEHEOzE6Hh0YUw3iLC45QKTtw1OND06IH4SgEgEwRG0mAPJGQH8v4/3FH/ABmAgFME1O6EoTB3RhAINgfs3h37RVuK0d%2BxBCndSVAyN%2B7ojkhQ/iwKs7pUDHBUN2Bk9BJT4WLnncRjA2g6RdowcZTAACSmAQBrLCHYOZXkMG137MyBwZ84mcISZC6Fn8WD4PoC4fsxBRRJIQUg3KqD0EyLKGUtp9CI5dN4rUthPtUXJx4YMlSwys5jPQBMwuUyZlzNCYs8JKzgHv02ds3Z%2Byhg3IyMckIpzG4XLJFcw5Mq7lj0ec815PYYgfL9t80uhl/m4JicHLloLwXophRk%2BFiLkWx0NkymSlrMW5NxfilwhKUkkvSXCilrK2mVOdjU2OdT2HxOZc03hNCw4MNpXS2O8dw0DNabQ2O1sk1NJTdheeTcCC8hAFKIAA%3D%3D%3D
+# [DRAFT] Where did my assembly code go?
+
+In my last post about [pipelined processors and instructions](instructions-01.md) I briefly talked about processor ports and how they affect instruction execution.
+
+Let's talk some more about the pipeline and its components. I'll focus on relatively recent Intel architectures, namely Haswell and up - where some key architecture changes were introduced.
+
+## Processor architecture
+
+Generally speaking, these processor architectures can be divided into frontend and backend. 
+
+When a program (*i.e* instructions and data) is ready to execute, the instructions make their way into the L1 instruction cache, located in the frontend.
+
+The data is loaded into the L1 data cache, in its turn located in the processor backend.
+
+From there, a lot of complicated and cool things start to happen.
+
+### The processor frontend
+
+A number of complicated things happen on the frontend of the pipeline so I'll summarize the most significant and relevant ones in the context of this post.
+
+
+Here is where the instruction fetching and all the complex decoding happens. On most, if not all modern Intel processor, instructions are fetched at a rate of 16 bytes per clock cycle and put into an the instruction queue. 
+
+This is also where instruction [macro and micro fusion](instructions-01.md) happen; where the branch predictor, the stack engine, the loop stream detector (LSD) and the decoded stream buffer (DSB) live.
+
+Quickly trying to explain some of these things, the LSD helps the execution of instructions in a code loop while the DSB contains already decoded micro operations. 
+
+The branch predictor is also an awesome optimization mechanism optimizes execution by, as the name says, predicting which branch the code execution will take.
+There are a number of things us developers can do to help the branch predictor and I promise I'll write a full post about it one day.
+
+At the end of all that is the decoded instruction queue or allocation queue, where all the micro ops are stored and then fed to the backend.
+
+### The processor backend
+

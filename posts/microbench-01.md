@@ -33,7 +33,7 @@ Right now, we’re going to look into benchmarking a portion of the code (hence 
 
 ## Microbenchmarking with Google benchmark
 In this article, we'll be using [Google Benchmark](https://github.com/google/benchmark), a fantastic microbenchmarking framework for C++.
-I'm not going to cover all of its features but hopefully the majority of the common use cases. The project's page on github is very well documented and I recomend reading it once you're comfortable with the basics.
+I'm not going to cover all of its features but hopefully the majority of the common use cases. The project's page on github is very well documented and I recommend reading it once you're comfortable with the basics.
 
 In addition to Google benchmark, I'll be using clang 7, lldb and objdump for compiling and analyzing the generated assembly code.
 
@@ -86,7 +86,7 @@ Note the information in the begining of the report. It can be very useful for un
 
 Also, not how fast the code run, 0 nanos :) amazing. That's because it's not doing anything.
 
-Let's look at the assembly output of the generated code. For that, I'm using lldb set for the Intel idom.
+Let's look at the assembly output of the generated code. For that, I'm using lldb set for the Intel idiom.
 The code was compiled with clang 7, and the flags `-O3 -g -fno-exceptions -fno-rtti -mno-omit-leaf-frame-pointer -fno-omit-frame-pointer`. 
 
 ```c++
@@ -156,7 +156,7 @@ Still 0 nanoseconds, which maybe correct but it is suspicious. Let's look at the
 It looks exactly like the previous one, where we had an empty loop. 
 You probably already guessed what is going on, the compiler is optimizing away the code we wrote. And we do want the optimizations on.
 
-Thankfuly, Google benchmark has a solution for that, a nice little trick in the form of the method `benchmark::DoNotOptimize()`
+Thankfully, Google benchmark has a solution for that, a nice little trick in the form of the method `benchmark::DoNotOptimize()`
 Let's add that to our code
 ```c++
 static void BM_simpleTest(benchmark::State& state) {      
@@ -178,7 +178,7 @@ Benchmark              Time             CPU   Iterations
 BM_simpleTest      0.331 ns        0.330 ns   1000000000
 ```
 
-That's more like it, pretty fast but not zero. Let's look at the assembly code again. Last time, I promisse you.
+That's more like it, pretty fast but not zero. Let's look at the assembly code again. Last time, I promise you.
 
 ```c++
 0x10000144d <+13>: mov    r15b, byte ptr [rdi + 0x1a]
@@ -229,7 +229,7 @@ Let's say we want to do the same but for several different lengths of `values`. 
 
 We can pass parameters to our code by invoking the method `Arg()` in the object returned by the `BENCHMARK()`. This can be done multiple times and each time will execute our benchmark test with a different parameter.
 
-Let's tweek our code a bit to make that work
+Let's tweak our code a bit to make that work
 
 ```c++
 static void BM_simpleTest(benchmark::State& state) {          
