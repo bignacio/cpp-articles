@@ -1,4 +1,4 @@
-# C++ Performance measurement, analysis and optmization techiniques
+# C++ Performance measurement, analysis and optimization techniques
 
 A few disclaimers <br>
 **All content on this site is distributed under the [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/deed.en_US).**
