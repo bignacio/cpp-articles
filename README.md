@@ -10,7 +10,7 @@ Ok, less talk...
 1. [When and how to microbenchmark our code](posts/microbench-01.md)
 2. [Not all instructions are created equal](posts/instructions-01.md)
 3. [Where did my assembly code go?](posts/processor-ports-01.md)
-4. [The initialization of Dynamic Shared Objects built with Go[lang]](posts/go-runtime-initialization.md)
+4. [The initialization of Dynamic Shared Objects built in Go[lang]](posts/go-runtime-initialization.md)
 
 
 <br>

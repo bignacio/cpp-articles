@@ -1,4 +1,4 @@
-# The initialization of Dynamic Shared Objects built with Go[lang]
+# The initialization of Dynamic Shared Objects built in Go[lang]
 **Disclaimer**: this post isn't really about C++ but I hope you'll find it useful in any case ;)
 
 
