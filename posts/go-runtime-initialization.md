@@ -1,4 +1,4 @@
-# Loading Dynamic Shared Objects built with Go[lang]
+# The initialization of Dynamic Shared Objects built with Go[lang]
 **Disclaimer**: this post isn't really about C++ but I hope you'll find it useful in any case ;)
 
 
@@ -452,3 +452,8 @@ The initialization of the Go runtime maybe not as fast as one would like but it 
 * [A Quick Guide to Go's Assembler](https://golang.org/doc/asm)
 * [GopherCon 2016: Rob Pike - The Design of the Go Assembler](https://www.youtube.com/watch?v=KINIAgRpkDA)
 * [Go Internals](https://blog.altoros.com/golang-part-1-main-concepts-and-project-structure.html)
+
+
+<br>
+
+*Bira Ignacio*

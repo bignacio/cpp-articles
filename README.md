@@ -3,11 +3,16 @@
 A few disclaimers <br>
 **All content on this site is distributed under the [Creative Commons Attribution 3.0 Unported License](http://creativecommons.org/licenses/by/3.0/deed.en_US).**
 
-Ok, less talk.
+Ok, less talk...
 
 ## Articles
 
 1. [When and how to microbenchmark our code](posts/microbench-01.md)
 2. [Not all instructions are created equal](posts/instructions-01.md)
 3. [Where did my assembly code go?](posts/processor-ports-01.md)
-4. [Loading Dynamic Shared Objects built with Go[lang]](posts/go-runtime-initialization.md)
+4. [The initialization of Dynamic Shared Objects built with Go[lang]](posts/go-runtime-initialization.md)
+
+
+<br>
+
+*Bira Ignacio*
