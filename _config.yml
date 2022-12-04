@@ -7,7 +7,7 @@ kramdown:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-name:         C++ development
+name:         C++ and C development
 description:  Low latency programming with C/C++
 url:          https://bignacio.github.io
 timezone: EDT
