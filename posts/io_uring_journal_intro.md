@@ -4,7 +4,7 @@ Sometimes you really just need to make as few system calls as possible and ever 
 
 This led me to document this process and hopefully provide something useful to others doing the same (including future me).
 
-For a very brief introduction to what `io_uring` is, here's a quote from kernel patch introducing the feature:
+For a very brief introduction to what `io_uring` is, here's a quote from [kernel patch](https://git.kernel.dk/cgit/linux-block/commit/?h=for-next&id=2b188cc1bb857a9d4701ae59aa7768b5124e262e) introducing the feature:
 
 > With this setup, it's possible to do async IO with a single system call. Future developments will enable polled IO with this interface, and polled submission as well. The latter will enable an application to do IO without doing ANY system calls at all.
 
