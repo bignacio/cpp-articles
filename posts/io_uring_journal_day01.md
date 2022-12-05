@@ -28,7 +28,7 @@ All include files for `liburing` will be in the default include paths and to lin
 
 One of the nice advantages of using `liburing` is that it can hide any of the complexity required to support different kernel versions. It even exposes a way to probe what is currently supported by the running kernel.
 
-That was the first thing I did, here's a snippet ([check the full code here](code/io_uring_probe.c))
+That was the first thing I did, here's a snippet ([check the full code here](https://github.com/bignacio/cpp-articles/blob/main/code/io_uring_probe.c))
 
 ```
  const char *operations[] = {
@@ -55,3 +55,7 @@ That was the first thing I did, here's a snippet ([check the full code here](cod
 
 This will print everything the kernel supports and does not support.
 Note that the `operations` array was based on the enum `io_uring_op` provided by `liburing`.
+
+Perhaps not surprisingly all operations are supported, which is good to know even though I certainly do not intend to use them all.
+
+Next: `io_uring` initialization, parameters and kernel features.
