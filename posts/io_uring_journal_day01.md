@@ -1,6 +1,6 @@
 #  The Power of `io_uring` - A journey
 
-## Day `01` hello world", of sorts
+## Day 01: a "hello world", of sorts
 
 For my little async I/O project using `io_uring`, I have a few not very audacious objects for today:
 
