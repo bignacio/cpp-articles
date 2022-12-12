@@ -15,4 +15,6 @@ The posts that follow discuss the more practical aspects of implementing basic a
 While the motivation for using `io_uring` is to have highly performant asynchronous I/O, this series will not contain any benchmarks or performance comparisons. There is a [very interesting discussion](https://github.com/axboe/liburing/issues/189) on this subject that's worth reading.
 
 Here's my journal
-1. [Day 01 - a "hello world", of sorts](io_uring_journal_day01.md)
+1. [Day 01: a "hello world", of sorts](io_uring_journal_day01.md)
+1. [Day 02: Initialization, parameters and kernel features](io_uring_journal_day02.md)
+1. [Day 03: Accept and event processing in the `io_uring` universe](io_uring_journal_day03.md)
