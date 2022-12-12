@@ -1,4 +1,4 @@
-#  The Power of `io_uring` - A journey
+# The Power of `io_uring` - A journey
 
 ## Day 01: a "hello world", of sorts
 
@@ -58,4 +58,4 @@ Note that the `operations` array was based on the enum `io_uring_op` provided by
 
 Perhaps not surprisingly all operations are supported, which is good to know even though I certainly do not intend to use them all.
 
-Next: `io_uring` initialization, parameters and kernel features.
+Next: [`io_uring` initialization, parameters and kernel features.](io_uring_journal_day02.md)

@@ -1,4 +1,4 @@
-# #  The Power of `io_uring` - A journey
+# The Power of `io_uring` - A journey
 
 ## Day 02: Initialization, parameters and kernel features
 
@@ -60,4 +60,4 @@ The number of descriptors required depends on the application. I am expecting to
 
 To use the registered descriptors when performing I/O operations, we need to use a different set of functions usually denoted by the infix `_direct`. We'll see that in details in the next chapters.
 
-Next: Accept and event processing in the `io_uring` universe.
+Next: [Accept and event processing in the `io_uring` universe.](io_uring_journal_day03.md)
