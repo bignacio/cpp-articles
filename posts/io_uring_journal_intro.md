@@ -17,4 +17,5 @@ While the motivation for using `io_uring` is to have highly performant asynchron
 Here's my journal
 1. [Day 01: a "hello world", of sorts](io_uring_journal_day01.md)
 1. [Day 02: Initialization, parameters and kernel features](io_uring_journal_day02.md)
-1. [Day 03: Accept and event processing in the `io_uring` universe](io_uring_journal_day03.md)
+1. [Day 03: Accepting connections in the `io_uring` universe](io_uring_journal_day03.md)
+1. [Day 04: An event loop for `io_uring`](io_uring_journal_day04.md)

@@ -9,14 +9,12 @@
 int main() {
   const in_port_t port = 4242;
 
-  // Create a socket
   int sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
     perror("Error creating socket");
     exit(1);
   }
 
-  // Bind the socket to any address
   struct sockaddr_in addr;
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
