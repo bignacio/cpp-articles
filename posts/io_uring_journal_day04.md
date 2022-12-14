@@ -62,7 +62,7 @@ typedef struct {
 } EventData;
 
 struct io_uring_sqe *sQueue = io_uring_get_sqe(ring);
-EventData acceptEvent = malloc(sizeof(EventData));
+EventData acceptEvent;
 acceptEvent.eventType = EventTypeAccept;
 
 // socketDesc is the listening socket
@@ -128,7 +128,7 @@ typedef struct {
 
 switch (cEvent->eventType){
 case EventTypeAccept:
-  // this is teh accepted client socket
+  // this is the accepted client socket
   int clientSocket = cQueue->res;
 
   struct io_uring_sqe *sQueue = io_uring_get_sqe(ring);
@@ -148,7 +148,7 @@ case EventTypeAccept:
 
   sQueue->flags = sQueue->flags | IOSQE_FIXED_FILE;
 
-  return io_uring_submit(ring);
+  io_uring_submit(ring);
   break;
 
 case EventTypeRead:
@@ -157,7 +157,7 @@ case EventTypeRead:
   // In a real application, we'd do something with it
 
   // keep the client socket, will need it
-  int clientSocket = cEvent->clientSocket;
+  int readSocket = cEvent->clientSocket;
 
   // you'll also not want to be allocating and freeing memory in the event loop
   // but this should illustrate the work needed
@@ -166,22 +166,22 @@ case EventTypeRead:
 
   // let's write a response back
 
-  struct io_uring_sqe *sQueue = io_uring_get_sqe(ring);
-  EventData *eventData = malloc(sizeof(EventData));
-  eventData->eventType = EventTypeWrite;
+  struct io_uring_sqe *rsq = io_uring_get_sqe(ring);
+  EventData *rEventData = malloc(sizeof(EventData));
+  rEventData->eventType = EventTypeWrite;
 
-  const unsigned int bufferSize = 4;
-  eventData->buffer = malloc(bufferSize);
-  eventData->bufferSize = bufferSize;
-  eventData->clientSocket = clientSocket;
+  const unsigned int wSize = 4;
+  rEventData->buffer = malloc(bufferSize);
+  rEventData->bufferSize = wSize;
+  rEventData->clientSocket = readSocket;
 
-  strncpy(eventData->buffer, "ack\0", bufferSize);
+  strncpy(erEventData->buffer, "ack\0", bufferSize);
 
-  io_uring_prep_write(sQueue, clientSocket, eventData->buffer, bufferSize, 0);
-  io_uring_sqe_set_data(sQueue, eventData);
-  sQueue->flags = sQueue->flags | IOSQE_FIXED_FILE;
+  io_uring_prep_write(rsq, readSocket, rEventData->buffer, wSize, 0);
+  io_uring_sqe_set_data(rsq, rEventData);
+  rsq->flags = rsq->flags | IOSQE_FIXED_FILE;
 
-  return io_uring_submit(ring);
+  io_uring_submit(ring);
   break;
 
 case EventTypeRead:
@@ -195,6 +195,8 @@ case EventTypeRead:
 ```
 
 This may look like a lot but most of it is setup and boiler-plate code. It's not good code so don't take it as is and use as inspiration for a proper event handling mechanism.
+
+You can find the [complete working code here](https://github.com/bignacio/cpp-articles/blob/main/code/io_uring_complete.c).
 
 You may have noticed that `cQueue->res` contains the return value of read and write operations. That's a pattern `liburing` uses, `res` had the accepted socket from `io_uring_prep_multishot_accept_direct`, much like the `accept4` system call would. For `io_uring_prep_read`, it would be the number of bytes read, `io_uring_prep_write` for numbers of bytes written. So on and so forth.
 

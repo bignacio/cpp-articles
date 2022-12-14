@@ -56,7 +56,8 @@ if (errorCode != 1) {
     exit(1);
 }
 
-errorCode = io_uring_register_files_sparse(ring, params.numFilesInTable);
+// registers 8 file descriptors
+errorCode = io_uring_register_files_sparse(ring, 8);
 if (errorCode != 0) {
     perror(strerror(-errorCode));
     exit(1);

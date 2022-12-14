@@ -1,6 +1,6 @@
 #  The Power of `io_uring` - A journey
 
-Sometimes you really just need to make as few system calls as possible and ever since [io_uring was added](https://en.wikipedia.org/wiki/Io_uring){:target="_blank"} to Linux kernel 5.1, I've been wanting to try and use it for asynchronous network I/O instead of things like [epoll](https://man7.org/linux/man-pages/man7/epoll.7.html){:target="_blank"}, [select](https://man7.org/linux/man-pages/man2/select.2.html){:target="_blank"}, etc.
+Sometimes you really just need to make as few system calls as possible and ever since [io_uring was added](https://en.wikipedia.org/wiki/Io_uring) to Linux kernel 5.1, I've been wanting to try and use it for asynchronous network I/O instead of things like [epoll](https://man7.org/linux/man-pages/man7/epoll.7.html), [select](https://man7.org/linux/man-pages/man2/select.2.html), etc.
 
 This led me to document this process and hopefully provide something useful to others doing the same (including future me).
 
