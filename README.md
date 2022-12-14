@@ -12,6 +12,9 @@ Ok, less talk...
 3. [Where did my assembly code go?](posts/processor-ports-01.md)
 4. [The initialization of Dynamic Shared Objects built in Go[lang]](posts/go-runtime-initialization.md)
 
+### On `io_uring`
+
+1. [The Power of `io_uring` - A journey](posts/io_uring_journal_intro.md)
 
 <br>
 
