@@ -90,10 +90,10 @@ while(true){
 
     EventData* cEvent = (EventData*)io_uring_cqe_get_data(cQueue);
 
-    int clientSocket = cQueue->res;
-
     switch (cEvent->eventType){
     case EventTypeAccept:
+        int clientSocket = cQueue->res;
+
         // do something with clientSocket
         break;
     }
@@ -103,3 +103,105 @@ while(true){
 ```
 
 Calls to `io_uring_sqe_set_data` must be set after prep commands because they will clear various fields in the submission queue entry, including `user_data`.
+
+
+Now that we have everything setup, getting basic read and write functionality should be just a matter of submitting the proper operations and handling completion events. The `switch` block would look like this
+
+
+```
+typedef enum{
+  EventTypeAccept,
+  EventTypeRead,
+  EventTypeWrite,
+} EventType;
+
+typedef struct {
+  char* buffer;
+  unsigned int bufferSize;
+  int clientSocket;
+  EventType eventType;
+} EventData;
+
+// ...
+// accept, start event loop code above goes here
+// ...
+
+switch (cEvent->eventType){
+case EventTypeAccept:
+  // this is teh accepted client socket
+  int clientSocket = cQueue->res;
+
+  struct io_uring_sqe *sQueue = io_uring_get_sqe(ring);
+
+  // setup the buffer we'll use to read and attach it to the data we're using to track events
+  EventData *eventData = malloc(sizeof(EventData));
+  eventData->eventType = EventTypeRead;
+  const unsigned int bufferSize = 1024;
+  eventData->buffer = malloc(bufferSize);
+  eventData->bufferSize = bufferSize;
+
+  // we need to know which socket the event is coming from if we want to continue performing operations on it
+  eventData->clientSocket = clientSocket;
+
+  io_uring_prep_read(sQueue, clientSocket, eventData->buffer, bufferSize, 0);
+  io_uring_sqe_set_data(sQueue, eventData);
+
+  sQueue->flags = sQueue->flags | IOSQE_FIXED_FILE;
+
+  return io_uring_submit(ring);
+  break;
+
+case EventTypeRead:
+  // here cEvent->buffer will contain received data and
+  // cQueue->res the number of received bytes
+  // In a real application, we'd do something with it
+
+  // keep the client socket, will need it
+  int clientSocket = cEvent->clientSocket;
+
+  // you'll also not want to be allocating and freeing memory in the event loop
+  // but this should illustrate the work needed
+  free(cEvent->buffer);
+  free(cEvent);
+
+  // let's write a response back
+
+  struct io_uring_sqe *sQueue = io_uring_get_sqe(ring);
+  EventData *eventData = malloc(sizeof(EventData));
+  eventData->eventType = EventTypeWrite;
+
+  const unsigned int bufferSize = 4;
+  eventData->buffer = malloc(bufferSize);
+  eventData->bufferSize = bufferSize;
+  eventData->clientSocket = clientSocket;
+
+  strncpy(eventData->buffer, "ack\0", bufferSize);
+
+  io_uring_prep_write(sQueue, clientSocket, eventData->buffer, bufferSize, 0);
+  io_uring_sqe_set_data(sQueue, eventData);
+  sQueue->flags = sQueue->flags | IOSQE_FIXED_FILE;
+
+  return io_uring_submit(ring);
+  break;
+
+case EventTypeRead:
+  // the response was sent, we can clean up resources and call it a day
+  close(cEvent->clientSocket);
+  free(cEvent->buffer);
+  free(cEvent);
+  break;
+}
+
+```
+
+This may look like a lot but most of it is setup and boiler-plate code. It's not good code so don't take it as is and use as inspiration for a proper event handling mechanism.
+
+You may have noticed that `cQueue->res` contains the return value of read and write operations. That's a pattern `liburing` uses, `res` had the accepted socket from `io_uring_prep_multishot_accept_direct`, much like the `accept4` system call would. For `io_uring_prep_read`, it would be the number of bytes read, `io_uring_prep_write` for numbers of bytes written. So on and so forth.
+
+Another thing to note in the code is the presence of this line
+
+```
+sQueue->flags = sQueue->flags | IOSQE_FIXED_FILE;
+```
+
+this is necessary for the kernel to know that we're using registered file descriptors instead of the standard ones. Check how we used `io_uring_register_files_sparse` in [the previous step](io_uring_journal_day03.md).
